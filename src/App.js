@@ -26,34 +26,20 @@ function App() {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ]);
 
-  // componentDidMount() {
-  //   const getContacts = localStorage.getItem('contacts');
-  //   const parsedContacts = JSON.parse(getContacts);
-  //   console.log(parsedContacts);
-  //   if (parsedContacts) {
-  //     this.setState({ contacts: parsedContacts });
-  //   }
-  // }
-
-  // componentDidUpdate(prevState) {
-  //   if (this.state.contacts !== prevState.contacts) {
-  //     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-  //   }
-  // }
-
   const addContactHandler = (name, number) => {
     const newContact = {
       name,
       number,
       id: shortid.generate(),
     };
-    setContacts(state => [newContact, ...state]);
 
     const duplicateContact = contacts.find(contact => contact.name === name);
     if (duplicateContact) {
       alert(`${name} is already in contacts`);
       return;
     }
+
+    setContacts(state => [newContact, ...state]);
   };
 
   const changeFilter = e => {
